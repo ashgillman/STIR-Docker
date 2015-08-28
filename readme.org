@@ -1,0 +1,18 @@
+* STIR Docker
+A Docker Image loaded with STIR's dependencies, and with STIR built
+from source. In order to use you must register for STIR and enter your
+credentials into secrets.txt, replacing <username> and <password>.
+
+** Dependencies Installed
+The Dockerfile currently installs:
+- CMake
+- Boost
+- ITK 3
+- Curses
+- libtiff
+- MPI
+
+** TODO
+- Open MP
+- VTK
+- Dependencies for python/MATLAB support (swig etc.)
