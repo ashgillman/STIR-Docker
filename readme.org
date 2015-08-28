@@ -1,7 +1,17 @@
+#+AUTHOR:  Ashley Gillman
+#+TITLE: STIR Docker Readme
+
 * STIR Docker
-A Docker Image loaded with STIR's dependencies, and with STIR built
-from source. In order to use you must register for STIR and enter your
-credentials into secrets.txt, replacing <username> and <password>.
+A Docker image based on Ubuntu Trusty, loaded with STIR's
+dependencies, and with STIR built from source. In order to use you
+must register for STIR and enter your credentials into secrets.txt,
+replacing <username> and <password>.
+
+Build with:
+#+begin_src sh
+docker build -t "stir:base" .
+#+end_src
+Or run =build.sh=, which will also run the =recon_test_pack=.
 
 ** Dependencies Installed
 The Dockerfile currently installs:
@@ -12,7 +22,7 @@ The Dockerfile currently installs:
 - libtiff
 - MPI
 
-** TODO
+** TODO Possible Further Development
 - Open MP
 - VTK
 - Dependencies for python/MATLAB support (swig etc.)

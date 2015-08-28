@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     mpi-default-dev \
     unzip
 
-# STIR
+# Build STIR
 ADD secrets.txt /tmp/
 RUN curl -O http://stir.sourceforge.net/registered/STIR.zip \
     --netrc-file /tmp/secrets.txt && \
