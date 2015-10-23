@@ -33,7 +33,5 @@ ENV TINI_VERSION v0.7.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 
-ENV processors 4
-
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/tini", "--", "/docker-entrypoint.sh"]

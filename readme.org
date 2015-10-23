@@ -5,13 +5,28 @@
 A Docker image based on Ubuntu Trusty, loaded with STIR's
 dependencies, and with STIR built from source. In order to use you
 must register for STIR and enter your credentials into secrets.txt,
-replacing <username> and <password>.
+replacing =<username>= and =<password>=.
 
-Build with:
+** Build
+After updating username and password, build with:
 #+begin_src sh
-docker build -t "stir:base" .
+docker build -t stir .
+docker build -t stir:explore ./explore
 #+end_src
-Or run =build.sh=, which will also run the =recon_test_pack=.
+Or run =build.sh=, which will also verify the installation with the
+=recon_test_pack=.
+
+** Usage
+#+begin_src sh
+docker run --rm -v `pwd`:/data -w /data stir OSMAPOSL /some/file.par
+#+end_src
+
+If using often from command line you could set up an alias.
+#+begin_src sh
+alias stir="docker run --rm -v `pwd`:/data -w /data stir
+#+end_src
+
+Use the =stir:explore= image to launch an interactive session.
 
 ** Dependencies Installed
 The Dockerfile currently installs:
@@ -22,7 +37,10 @@ The Dockerfile currently installs:
 - libtiff
 - MPI
 
+The file also uses the [[https://github.com/krallin/tini][Tini]] spawner, to ensure that all processes are
+appropriately cleaned up.
+
 ** TODO Possible Further Development
-- Open MP
-- VTK
-- Dependencies for python/MATLAB support (swig etc.)
+- [ ] Open MP
+- [ ] VTK
+- [ ] Dependencies for python/MATLAB support (swig etc.)

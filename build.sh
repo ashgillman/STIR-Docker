@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Build Docker image.
-docker build -t "stir:base" .
+docker build -t stir .
+docker build -t stir:explore ./explore
 
 # Load the test data, if required.
 if [ ! -d STIR/recon_test_pack ]; then
@@ -15,5 +16,5 @@ fi
 docker run \
        -v $PWD/STIR/recon_test_pack:/STIR/recon_test_pack \
        -w /STIR/recon_test_pack/ \
-       stir:base \
+       stir:explore \
        ./run_tests.sh --mpicmd "mpirun -np $(getconf _NPROCESSORS_ONLN)"
