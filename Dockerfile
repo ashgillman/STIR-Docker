@@ -1,4 +1,4 @@
-## -*- docker-image-name: "stir:base" -*-
+# -*- docker-image-name: "stir" -*-
 FROM buildpack-deps:trusty
 MAINTAINER Ashley Gillman <ashley.gillman@my.jcu.edu.au>
 
@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Build STIR
 ADD secrets.txt /tmp/
 RUN curl -O http://stir.sourceforge.net/registered/STIR.zip \
-    --netrc-file /tmp/secrets.txt && \
+      --netrc-file /tmp/secrets.txt && \
     unzip -a STIR.zip && \
     mkdir ./STIR-build && \
     cd ./STIR-build && \
@@ -27,3 +27,13 @@ RUN curl -O http://stir.sourceforge.net/registered/STIR.zip \
     make install && \
     cd ..
 RUN rm /tmp/secrets.txt
+
+# Add Tini - take care of runaway processes
+ENV TINI_VERSION v0.7.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+
+ENV processors 4
+
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["/tini", "--", "/docker-entrypoint.sh"]
