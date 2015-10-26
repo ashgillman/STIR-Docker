@@ -1,16 +1,14 @@
 #+AUTHOR:  Ashley Gillman
 #+TITLE: STIR Docker Readme
 
-[[http://stir.sourceforge.net/][STIR]], in a container.
+[[http://stir.sourceforge.net/][STIR]], Dockerised.
 
 * STIR Docker
 A Docker image based on Ubuntu Trusty, loaded with STIR's
 dependencies, and with STIR built from source. In order to use you
-must register for STIR and enter your credentials into secrets.txt,
-replacing =<username>= and =<password>=.
+should make sure you register for STIR [[http://stir.sourceforge.net/registration][here]].
 
 ** Build
-After updating username and password, build with:
 #+begin_src sh
 docker build -t stir .
 docker build -t stir:explore ./explore

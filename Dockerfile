@@ -16,17 +16,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     unzip
 
 # Build STIR
-ADD secrets.txt /tmp/
-RUN curl -O http://stir.sourceforge.net/registered/STIR.zip \
-      --netrc-file /tmp/secrets.txt && \
-    unzip -a STIR.zip && \
-    mkdir ./STIR-build && \
-    cd ./STIR-build && \
-    cmake ../STIR -DSTIR_MPI=ON && \
-    make -j$(nproc) && \
-    make install && \
-    cd ..
-RUN rm /tmp/secrets.txt
+ENV STIR_VER rel_3_00
+RUN curl -L https://github.com/UCL/STIR/archive/${STIR_VER}.tar.gz \
+    | tar xz
+RUN mkdir /STIR-${STIR_VER}/build \
+    && cd /STIR-${STIR_VER}/build \
+    && cmake /STIR-${STIR_VER} -DSTIR_MPI=ON \
+    && make -j$(nproc) \
+    && make install \
+    && cd ..
 
 # Add Tini - take care of runaway processes
 ENV TINI_VERSION v0.7.0
