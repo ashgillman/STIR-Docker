@@ -1,6 +1,8 @@
 #+AUTHOR:  Ashley Gillman
 #+TITLE: STIR Docker Readme
 
+[[http://stir.sourceforge.net/][STIR]], in a container.
+
 * STIR Docker
 A Docker image based on Ubuntu Trusty, loaded with STIR's
 dependencies, and with STIR built from source. In order to use you
@@ -44,3 +46,13 @@ appropriately cleaned up.
 - [ ] Open MP
 - [ ] VTK
 - [ ] Dependencies for python/MATLAB support (swig etc.)
+
+* Authorship
+I did not write STIR. My contribution is nothing more that a handful
+of files no longer than 20 lines long. Full credits for contributions
+to STIR can be found [[http://stir.sourceforge.net/credits.htm][here]].
+
+* License
+This small package is released under the GPL license, in accordance
+with [[http://stir.sourceforge.net/registration][STIR's licensing]]. Please refer to STIR's licensing for any
+queries about the STIR package.
