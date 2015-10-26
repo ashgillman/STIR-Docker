@@ -1,0 +1,3 @@
+* =ashgillman/stir:3.0=
+
+STIR built from the current GitHub HEAD. May be unstable.

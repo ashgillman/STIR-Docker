@@ -1,0 +1,4 @@
+* =ashgillman/stir:depends=
+
+STIR dependencies and run environment, without and version of STIR
+installed.
