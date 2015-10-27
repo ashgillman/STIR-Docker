@@ -1,20 +1,13 @@
 #!/bin/bash
 
 # Build Docker image.
-docker build -t stir .
-docker build -t stir:explore ./explore
-
-# Load the test data, if required.
-if [ ! -d STIR/recon_test_pack ]; then
-  curl -O http://stir.sourceforge.net/registered/recon_test_pack.zip \
-       --netrc-file secrets.txt
-  unzip -a recon_test_pack.zip
-  rm recon_test_pack.zip
-fi
+docker build -t ashgillman/stir:depend  ./depend
+docker build -t ashgillman/stir:3.0     ./3.0
+docker build -t ashgillman/stir:latest  ./latest
+docker build -t ashgillman/stir:explore ./explore
 
 # Run the tests.
 docker run \
-       -v $PWD/STIR/recon_test_pack:/STIR/recon_test_pack \
-       -w /STIR/recon_test_pack/ \
-       stir:explore \
+       -w /STIR-rel_3_00/recon_test_pack/ \
+       ashgillman/stir:explore \
        ./run_tests.sh --mpicmd "mpirun -np $(getconf _NPROCESSORS_ONLN)"

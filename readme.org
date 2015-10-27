@@ -10,20 +10,20 @@ should make sure you register for STIR [[http://stir.sourceforge.net/registratio
 
 ** Build
 #+begin_src sh
-docker build -t stir .
-docker build -t stir:explore ./explore
+docker build -t ashgillman/stir:depend  ./depend
+docker build -t ashgillman/stir:3.0     ./3.0
 #+end_src
 Or run =build.sh=, which will also verify the installation with the
 =recon_test_pack=.
 
 ** Usage
 #+begin_src sh
-docker run --rm -v `pwd`:/data -w /data stir OSMAPOSL /some/file.par
+docker run --rm -v `pwd`:/data -w /data ashgillman/stir:3.0 OSMAPOSL /some/file.par
 #+end_src
 
 If using often from command line you could set up an alias.
 #+begin_src sh
-alias stir="docker run --rm -v `pwd`:/data -w /data stir
+alias stir="docker run --rm -v `pwd`:/data -w /data ashgillman/stir:3.0
 #+end_src
 
 Use the =stir:explore= image to launch an interactive session.
